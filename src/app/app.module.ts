@@ -7,24 +7,16 @@ import { CreatePollQuestionComponent } from './create-poll-question/create-poll-
 import { PollComponent } from './poll/poll.component';
 import { ChartsModule } from 'ng2-charts';
 import { ShowChartComponent } from './show-chart/show-chart.component';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
-  // { path: 'poll/:id', component: PollComponent },
-  //{ path: 'polls/manage/:id', component: PollManagementComponent },
-  // { path: 'manage', component: PollManagementComponent },
-  // { path: 'add-poll', component: AddPollComponent },
-  { path: '',   component: CreatePollQuestionComponent },
-  { path: 'poll',   component: PollComponent },
-  { path: 'show-chart',   component: ShowChartComponent },
-  { path: '**',   redirectTo: '/', pathMatch: 'full' },
-  // index page --> route ** to index page
-  // add new poll
-  // edit your polls
-  // login
+  { path: '', component: CreatePollQuestionComponent },
+  { path: 'poll', component: PollComponent },
+  { path: 'show-chart', component: ShowChartComponent },
+  { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -32,7 +24,7 @@ const appRoutes: Routes = [
     AppComponent,
     CreatePollQuestionComponent,
     PollComponent,
-    ShowChartComponent
+    ShowChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,11 +35,9 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    RouterModule.forRoot(
-      appRoutes
-    ),
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

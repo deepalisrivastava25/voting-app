@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4 border">
+      <form [formGroup]="pollForm" (ngSubmit)="onSubmit(pollForm.value)">
+        <div class="form-group row mt-3">
+          <div class="col-12 mb-3">
+            <input
+              type="text"
+              formControlName="question"
+              class="form-control"
+              placeholder="Enter question here"
+              [ngClass]="{ 'is-invalid': f.question.errors }"
+            />
+            <div *ngIf="f.question.errors" class="invalid-feedback">
+              <div *ngIf="f.question.errors.required">Question is required</div>
+            </div>
+            <div *ngIf="f.question.errors" class="invalid-feedback">
+              <div *ngIf="f.question.errors.maxlength">
+                Question field should be 80 chars maximum
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-12">
+              <table formArrayName="options ">
+                <div class="row">
+                  <tr
+                    *ngFor="let option of options().controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <td>
+                      <input
+                        type="text"
+                        formControlName="option"
+                        placeholder="Option {{ i + 1 }}"
+                        class="form-control"
+                      />
+                    </td>
+                    <td class="ml-5">
+                      <button (click)="removeOption(i)" class="btn btn-danger">
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                </div>
+                <tr>
+                  <div class="row mt-3">
+                    <div class="col-12 mb-3">
+                      <th>
+                        <button
+                          type="button"
+                          (click)="addOption()"
+                          class="btn btn-success"
+                        >
+                          Add option
+                        </button>
+                      </th>
+                    </div>
+                  </div>
+                </tr>
+              </table>
+              <!-- <div *ngIf="f.options().errors" class="invalid-feedback">
+                                <div *ngIf="f.options().errors.required">Options is required</div>
+                            </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 mt-3">
+            {{ possibleAnswers }}/10 Possible answers
+          </div>
+          <div class="col-3 mb-3">
+            <button type="reset" class="btn btn-warning">Reset</button>
+          </div>
+          <div class="col-3 mb-3">
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="onSubmit(pollForm.value)"
+              [disabled]="!pollForm.valid"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-4 border">
+      <app-poll></app-poll>
+    </div>
+    <div class="col-4 border">
+      <app-show-chart
+        [voteOptionsCounter]="voteOptionsCounter"
+      ></app-show-chart>
+    </div>
+  </div>
+</div>

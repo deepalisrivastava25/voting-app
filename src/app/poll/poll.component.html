@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <div *ngIf="showOptions">
+        <label id="example-radio-group-label">{{ question }}</label>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          [(ngModel)]="option"
+        >
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let op of opt"
+            [value]="op"
+          >
+            {{ op }}
+          </mat-radio-button>
+        </mat-radio-group>
+        <div class="col-12 mt-3">
+          <button
+            type="button"
+            (click)="vote(option, opt, options)"
+            class="btn btn-success"
+          >
+            Vote
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -66,9 +66,6 @@ export class PollComponent implements OnInit {
       this.opt = this.options.map((val) => val.option);
     });
   }
-  //   getFormData(formData: object) {
-  //     this.receivedFormData = formData;
-  // }
 
   vote(option: any, opt: any, options: any) {
     console.log(option);
@@ -81,6 +78,7 @@ export class PollComponent implements OnInit {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       panelClass: ['mat-toolbar', 'mat-primary'],
+      duration: 2000,
     });
   }
   save() {

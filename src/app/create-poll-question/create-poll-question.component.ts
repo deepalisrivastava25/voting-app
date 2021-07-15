@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import {
   FormGroup,
   FormControl,
@@ -19,6 +20,7 @@ export class CreatePollQuestionComponent implements OnInit, OnChanges {
   currentItem: any;
   question: any;
   item: any;
+  showWarning: boolean = false;
   possibleAnswers: number = 0;
   count: boolean = false;
   voteOptionsCounter: Array<number> = [];
@@ -61,20 +63,34 @@ export class CreatePollQuestionComponent implements OnInit, OnChanges {
     this.possibleAnswers = this.options().value.filter(
       (val) => val.option.length > 0
     ).length;
+    if (this.possibleAnswers < 2) {
+      this.showWarning = true;
+    } else this.showWarning = false;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.pollForm) {
+      if (this.pollForm.get('options')) {
+        const variable = this.pollForm.get('options');
+        variable!.valueChanges.subscribe((value) => this.getPossibleAns());
+      }
+    }
+  }
 
   onSubmit(value: Object) {
     this.commonService.AClicked(value);
     this.commonService.changeOption(new Array(this.options().length).fill(0));
   }
-  onOptionChange(event: any) {
-    if (event.target.value > 0) {
+
+  onUserInputChange({ target }) {
+    if (target.value > 0) {
       this.getPossibleAns();
     }
   }
   get f() {
     return this.pollForm.controls;
+  }
+  reset() {
+    this.showWarning = false;
   }
 }

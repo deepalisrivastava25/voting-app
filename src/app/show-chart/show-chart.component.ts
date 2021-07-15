@@ -16,6 +16,7 @@ export class ShowChartComponent implements OnInit {
   constructor(private commonService: CommonServiceService) {}
   message: any;
   votedOption: any;
+  totalVotes: number = 0;
   allOptions: any;
   showonXaxis: any;
   count: number = 0;
@@ -34,29 +35,34 @@ export class ShowChartComponent implements OnInit {
     this.commonService.numOptions.subscribe((data) => {
       voteOpt = data;
       voteOpt[index] += 1;
+      this.totalVotes = voteOpt.reduce(function (acc, cur) {
+        return acc + cur;
+      });
       var myChart = new Chart('myChart', {
         type: 'bar',
         data: {
           labels: this.allOptions,
           datasets: [
             {
-              label: '# of Votes',
+              label: 'Total Votes:' + this.totalVotes,
               data: voteOpt,
+              backgroundColor: '#26be25',
               borderWidth: 1,
-              backgroundColor: this.getRandomColor(),
             },
           ],
         },
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        },
       });
     });
-  }
-
-  getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
   }
 }

@@ -10,7 +10,7 @@ import { CommonServiceService } from '../services/common-service.service';
   styleUrls: ['./show-chart.component.css'],
 })
 export class ShowChartComponent implements OnInit {
-  @Input() voteOptionsCounter: any;
+  @Input() refresh: boolean = false;
   public messageForSibling: any = '';
   clickEventsubscription!: Subscription;
   constructor(private commonService: CommonServiceService) {}
@@ -22,7 +22,7 @@ export class ShowChartComponent implements OnInit {
   count: number = 0;
 
   ngOnInit(): void {}
-
+  if(){}
   collectChartData(option: any, opt: any, options: any) {
     this.votedOption = option;
     this.showonXaxis = options;

@@ -9,20 +9,10 @@
               formControlName="question"
               class="form-control"
               placeholder="Enter question here"
-              [ngClass]="{
-                'is-invalid':
-                  f.question.errors && (f.question.dirty || f.question.touched)
-              }"
+              [ngClass]="{ 'is-invalid': f.question.errors && (f.question.dirty || f.question.touched) }"
             />
             <div *ngIf="f.question.errors" class="invalid-feedback">
-              <div
-                *ngIf="
-                  f.question.errors.required &&
-                  (f.question.dirty || f.question.touched)
-                "
-              >
-                Question is required
-              </div>
+              <div *ngIf="f.question.errors.required && (f.question.dirty || f.question.touched)">Question is required</div>
             </div>
             <div *ngIf="f.question.errors" class="invalid-feedback">
               <div *ngIf="f.question.errors.maxlength">
@@ -71,18 +61,14 @@
               </table>
             </div>
           </div>
-          <div class="text-danger mb-3" *ngIf="showWarning">
-            There should be atleast 2 possible options
-          </div>
+          <div class="text-danger mb-3" *ngIf="showWarning">There should be atleast 2 possible options</div>
         </div>
         <div class="row">
           <div class="col-6 mt-3">
             {{ possibleAnswers }}/10 Possible answers
           </div>
           <div class="col-3 mb-3">
-            <button type="reset" (click)="reset()" class="btn btn-warning">
-              Reset
-            </button>
+            <button type="reset" (click)="reset()" class="btn btn-warning">Reset</button>
           </div>
           <div class="col-3 mb-3">
             <button
@@ -102,7 +88,6 @@
     </div>
     <div class="col-4 border">
       <app-show-chart
-        [voteOptionsCounter]="voteOptionsCounter"
       ></app-show-chart>
     </div>
   </div>

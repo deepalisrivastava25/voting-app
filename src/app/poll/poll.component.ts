@@ -35,7 +35,6 @@ export interface FormCategory {
 export class PollComponent implements OnInit {
   showChartCompObj = new ShowChartComponent(this.commonService);
   test: any;
-  @Output() onVariantChange = new EventEmitter();
   changeLog: string[] = [];
   formData!: any;
   question!: string;
@@ -44,6 +43,7 @@ export class PollComponent implements OnInit {
   showOptions: boolean = false;
   options: Array<any> = [];
   option: any = '';
+  @Input() refresh: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
@@ -81,7 +81,5 @@ export class PollComponent implements OnInit {
       duration: 2000,
     });
   }
-  save() {
-    console.log('charts page');
-  }
+
 }

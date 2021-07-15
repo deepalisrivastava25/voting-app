@@ -10,17 +10,12 @@ export class CommonServiceService {
   voteOptions = this.numOptions.asObservable();
   currentMessage = this.messageSource.asObservable();
   @Output() formToEmit = new EventEmitter<Object>();
-  @Output() voteFormToEmit = new EventEmitter<Object>();
   public subject = new BehaviorSubject(false);
 
   constructor() {}
 
   AClicked(msg: Object) {
     this.formToEmit.emit(msg);
-  }
-
-  VClicked() {
-    this.voteFormToEmit.emit();
   }
 
   changeOption(options: any) {

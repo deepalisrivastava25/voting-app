@@ -43,15 +43,13 @@ export class CreatePollQuestionComponent implements OnInit, OnChanges {
 
   newOption(): FormGroup {
     return this.fb.group({
-      option: ['', [Validators.maxLength(80)]],
+      option: '',
     });
   }
 
   addOption() {
     this.options().push(this.newOption());
-    //console.log(this.pollForm.value);
     this.getPossibleAns();
-    //this.possibleAnswers.filter(val => val.option.length>0).length;
   }
 
   removeOption(i: number) {
@@ -68,13 +66,8 @@ export class CreatePollQuestionComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   onSubmit(value: Object) {
-    // console.log("hello");
-    // console.log(value);
-    // console.log("india");
-    // //this.router.navigate(['/poll']);
     this.commonService.AClicked(value);
     this.commonService.changeOption(new Array(this.options().length).fill(0));
-    //this.voteOptionsCounter = new Array(this.options().length).fill(0);
   }
   onOptionChange(event: any) {
     if (event.target.value > 0) {

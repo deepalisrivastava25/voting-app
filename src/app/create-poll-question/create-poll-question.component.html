@@ -22,7 +22,7 @@
           </div>
           <div class="row mb-3">
             <div class="col-12">
-              <table formArrayName="options ">
+              <table formArrayName="options">
                 <div class="row">
                   <tr
                     *ngFor="let option of options().controls; let i = index"
@@ -59,9 +59,6 @@
                   </div>
                 </tr>
               </table>
-              <!-- <div *ngIf="f.options().errors" class="invalid-feedback">
-                                <div *ngIf="f.options().errors.required">Options is required</div>
-                            </div> -->
             </div>
           </div>
         </div>
